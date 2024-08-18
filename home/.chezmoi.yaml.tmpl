@@ -1,0 +1,54 @@
+
+{{- $name := promptStringOnce . "name" "Name" -}}
+{{- $email := promptStringOnce . "email" "Email" -}}
+{{- $system := promptChoiceOnce . "system" "What kind of host are you on" (list "client" "server") }}
+
+{{- $headless := false -}}
+{{- $is_codespace := false -}}
+
+{{- $go := false -}}
+{{- $node := false -}}
+{{- $rust := false -}}
+{{- $python := false -}}
+
+{{- $home := false -}}
+{{- $gaming := false -}}
+{{- $development := false -}}
+{{- $work := false -}}
+
+{{- $shell := promptChoiceOnce . "defaults.shell" "What shell do you use" (list "fish" "zsh") -}}
+{{- $editor := promptChoiceOnce . "defaults.editor" "What is your preferred default editor" (list "nvim" "hx") -}}
+{{- $browser := promptChoiceOnce . "defaults.browser" "What is your preferred browser" (list "brave-browser" "safari") -}}
+{{- $terminal := promptChoiceOnce . "defaults.terminal" "What is your preferred default terminal" (list "kitty" "iterm2" "wezterm") -}}
+{{- $player := promptChoiceOnce . "defaults.player" "What is your preferred default music app" (list "plex" "apple-music") -}}
+{{- $notes_app := promptChoiceOnce . "defaults.notes_app" "What is your preferred default note-taking app" (list "logseq" "zk") -}}
+
+data:
+  name: {{ $name | quote }}
+  email: {{ $email | quote }}
+  system: {{ $system | quote }}
+  os: {{ .chezmoi.os }}
+
+  defaults:
+    shell: {{ $shell | quote }}
+    editor: {{ $editor | quote }}
+    browser: {{ $browser | quote }}
+    player: {{ $player | quote }}
+    terminal: {{ $terminal | quote }}
+    notes_app: {{ $notes_app | quote }}
+
+  flags:
+    headless: {{ $headless }}
+    is_codespace: {{ $is_codespace }}
+
+  languages:
+    go: {{ $go }}
+    node: {{ $node }}
+    rust: {{ $rust }}
+    python: {{ $python }}
+
+  profiles:
+    home: {{ $home }}
+    gaming: {{ $gaming }}
+    development: {{ $development }}
+    work: {{ $home }}
