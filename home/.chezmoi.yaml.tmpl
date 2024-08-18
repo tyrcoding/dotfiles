@@ -11,6 +11,7 @@
 {{- $rust := false -}}
 {{- $python := false -}}
 {{- $java := false -}}
+{{- $lua := false -}}
 
 {{- $home := promptBoolOnce . "profiles.home" "Include sensitive home settings" true -}}
 {{- $gaming := promptBoolOnce . "profiles.gaming" "Enable gaming features" false -}}
@@ -30,6 +31,10 @@
 {{-   $python = true -}}
 {{- end -}}
 
+{{- if eq $editor "nvim" -}}
+{{-   $lua = true }}
+{{- end -}}
+
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
@@ -46,13 +51,17 @@ data:
   flags:
     headless: {{ $headless }}
     is_codespace: {{ $is_codespace }}
-
+{{ if eq .chezmoi.os "darwin" }}
+  homebrew:
+    prefix: "{{ if eq .chezmoi.arch "arm64" }}/opt/homebrew{{ else }}/usr/local{{ end }}"
+{{ end }}
   languages:
     go: {{ $go }}
     node: {{ $node }}
     rust: {{ $rust }}
     python: {{ $python }}
     java: {{ $java }}
+    lua: {{ $lua }}
 
   profiles:
     home: {{ $home }}

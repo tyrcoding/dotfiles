@@ -1,0 +1,24 @@
+packages:
+  darwin:
+    taps:
+      - 'homebrew-ffmpeg/ffmpeg'
+    brews:
+      - 'fish'
+      - 'git-delta'
+      - 'hub'
+      - 'lazygit'
+      - 'mise'
+      - 'neovim'
+      - 'yazi'
+      - 'yt-dlp'
+      - 'zoxide'
+    casks:
+      - 'kitty'
+      - 'raycast'
+      - 'remnote'
+      - 'secretive'
+    media-casks:
+      - 'plex-media-server'
+    gaming-casks:
+      - 'crossover'
+      - 'steam'

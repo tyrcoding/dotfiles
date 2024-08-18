@@ -1,0 +1,23 @@
+[tools]
+{{- if .languages.node }}
+node = "latest"
+yarn = "latest"
+{{- end }}
+{{- if .languages.python }}
+python = "latest"
+poetry = "latest"
+{{- end }}
+usage = "latest"
+{{- if .languages.java }}
+java = "latest"
+clojure = "latest"
+{{- end }}
+{{- if .languages.lua }}
+lua = "latest"
+{{- end }}
+
+[settings]
+{{- if .languages.python }}
+python_compile = true
+{{- end }}
+experimental = true
