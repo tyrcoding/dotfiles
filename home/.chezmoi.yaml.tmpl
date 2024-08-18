@@ -10,11 +10,13 @@
 {{- $node := false -}}
 {{- $rust := false -}}
 {{- $python := false -}}
+{{- $java := false -}}
 
 {{- $home := promptBoolOnce . "profiles.home" "Include sensitive home settings" true -}}
 {{- $gaming := promptBoolOnce . "profiles.gaming" "Enable gaming features" false -}}
 {{- $development := promptBoolOnce . "profiles.development" "Enable developer mode" true -}}
 {{- $work := promptBoolOnce . "profiles.work" "Include sensitive work settings" false -}}
+{{- $encoding := promptBoolOnce . "profiles.encoding" "Include encoding and production tools and settings" false -}}
 
 {{- $shell := promptChoiceOnce . "defaults.shell" "What shell do you use" (list "fish" "zsh") -}}
 {{- $editor := promptChoiceOnce . "defaults.editor" "What is your preferred default editor" (list "nvim" "hx") -}}
@@ -50,9 +52,11 @@ data:
     node: {{ $node }}
     rust: {{ $rust }}
     python: {{ $python }}
+    java: {{ $java }}
 
   profiles:
     home: {{ $home }}
     gaming: {{ $gaming }}
     development: {{ $development }}
     work: {{ $home }}
+    encoding: {{ $encoding }}
