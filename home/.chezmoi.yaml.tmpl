@@ -11,10 +11,10 @@
 {{- $rust := false -}}
 {{- $python := false -}}
 
-{{- $home := false -}}
-{{- $gaming := false -}}
-{{- $development := false -}}
-{{- $work := false -}}
+{{- $home := promptBoolOnce . "profiles.home" "Include sensitive home settings" true -}}
+{{- $gaming := promptBoolOnce . "profiles.gaming" "Enable gaming features" false -}}
+{{- $development := promptBoolOnce . "profiles.development" "Enable developer mode" true -}}
+{{- $work := promptBoolOnce . "profiles.work" "Include sensitive work settings" false -}}
 
 {{- $shell := promptChoiceOnce . "defaults.shell" "What shell do you use" (list "fish" "zsh") -}}
 {{- $editor := promptChoiceOnce . "defaults.editor" "What is your preferred default editor" (list "nvim" "hx") -}}
@@ -23,11 +23,15 @@
 {{- $player := promptChoiceOnce . "defaults.player" "What is your preferred default music app" (list "plex" "apple-music") -}}
 {{- $notes_app := promptChoiceOnce . "defaults.notes_app" "What is your preferred default note-taking app" (list "logseq" "zk") -}}
 
+{{- if $development -}}
+{{-   $node = true -}}
+{{-   $python = true -}}
+{{- end -}}
+
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
   system: {{ $system | quote }}
-  os: {{ .chezmoi.os }}
 
   defaults:
     shell: {{ $shell | quote }}
