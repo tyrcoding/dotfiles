@@ -12,6 +12,8 @@ packages:
       - 'yazi'
       - 'yt-dlp'
       - 'zoxide'
+    extras:
+      - 'starship'
     casks:
       - 'kitty'
       - 'raycast'

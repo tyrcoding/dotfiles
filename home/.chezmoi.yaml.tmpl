@@ -4,6 +4,7 @@
 {{- $system := promptChoiceOnce . "system" "What kind of host are you on" (list "client" "server") }}
 
 {{- $headless := false -}}
+{{- $ephemeral := false -}}
 {{- $is_codespace := false -}}
 
 {{- $go := false -}}
@@ -49,6 +50,7 @@ data:
     notes_app: {{ $notes_app | quote }}
 
   flags:
+    ephemeral: {{ $ephemeral }}
     headless: {{ $headless }}
     is_codespace: {{ $is_codespace }}
 {{ if eq .chezmoi.os "darwin" }}
