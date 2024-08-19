@@ -1,1 +1,7 @@
 fish_variables
+{{ if not (lookPath "alacritty") }}
+.config/alacritty
+{{ end }}
+{{ if not (lookPath "wezterm") }}
+.config/wezterm
+{{ end }}

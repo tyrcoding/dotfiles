@@ -1,0 +1,11 @@
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+size = 11.5
+
+[scrolling]
+history = 10000 # Default: 10000
+multiplier = 3  # Default: 3
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\\t" # Default: ",│`|:\"' ()[]{}<>\\t"
+save_to_clipboard = true
