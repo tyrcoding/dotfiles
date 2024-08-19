@@ -5,7 +5,7 @@ abbr -a -- tarls 'tar -tvf'
 abbr -a -- untar 'tar -xv'
 abbr -a -- zz exit
 
-abbr -a -- cm chezmoi
+abbr -a -- cz chezmoi
 abbr -a -- dp 'chezmoi apply -v'
 abbr -a -- cdd 'cd {{ .chezmoi.sourceDir }}'
 
@@ -30,7 +30,7 @@ abbr -a -- bz 'brew uninstall --zap'
 abbr -a -- br 'brew reinstall'
 
 abbr -a -- ci 'brew install --cask'
-abbr -a -- cz 'brew uninstall --cask --zap'
+abbr -a -- brcz 'brew uninstall --cask --zap'
 {{ end -}}
 
 {{ if lookPath "eza" -}}
