@@ -1,0 +1,22 @@
+#!/usr/bin/env zsh
+
+set -Eeuo pipefail
+
+function homebrew_exists() {
+  command -v brew &>/dev/null
+}
+
+function install_homebrew() {
+  if ! homebrew_exists; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+}
+
+function opt_out_of_analytics() {
+  brew analytics off
+}
+
+function main() {
+  install_homebrew
+  opt_out_of_analytics
+}
