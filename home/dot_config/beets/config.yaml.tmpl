@@ -1,0 +1,28 @@
+directory: {{ .chezmoi.homeDir }}/Plex/Music
+library: {{ .chezmoi.homeDir }}/Music/beets/config/musiclibrary.blb
+
+asciify_path: yes
+original_date: yes
+per_disc_numbering: yes
+
+plugins: [
+  chroma,
+  duplicates,
+  edit,
+  fetchart,
+  embedart,
+  lastgenre,
+  zero,
+]
+
+## Core behavior
+
+import:
+  move: yes
+  resume: yes
+
+## Plugins
+
+zero:
+  fields: albumartist_sort artist_sort comments
+  update_database: yes
