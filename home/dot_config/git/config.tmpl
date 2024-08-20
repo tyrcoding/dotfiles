@@ -1,16 +1,25 @@
 [user]
-name = {{ .name }}
-email = {{ .email }}
+  name = {{ .name }}
+  email = {{ .email }}
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILPxt+AurtUlNURHJzflTV3C40Q1JvAl16YTXS/3XHGQ
 
 [init]
-defaultBranch = main
+  defaultBranch = main
 
 [color]
-branch = auto
-diff = auto
-interactive = auto
-status = auto
-ui = auto
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+
+[commit]
+  gpgsign = true
 
 [gpg]
-format = ssh
+  format = ssh
+
+{{ if eq .chezmoi.os "darwin" -}}
+[gpg "ssh"]
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+{{ end }}
