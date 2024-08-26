@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ .homebrew.prefix }}/bin/brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range .packages.darwin.taps -}}
 tap {{ . | quote }}
 {{ end -}}
@@ -12,6 +12,16 @@ brew {{ . | quote }}
 {{ end -}}
 {{ range .packages.darwin.casks -}}
 cask {{ . | quote }}
+{{ end -}}
+{{ if .profiles.encoding -}}
+{{  range .packages.darwin.media_casks -}}
+cask {{ . | quote }}
+{{  end -}}
+{{ end -}}
+{{ if .profiles.gaming -}}
+{{  range .packages.darwin.gaming_casks -}}
+cask {{ . | quote }}
+{{  end -}}
 {{ end -}}
 EOF
 
