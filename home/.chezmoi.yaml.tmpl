@@ -25,7 +25,7 @@
 {{- $browser := promptChoiceOnce . "defaults.browser" "What is your preferred browser" (list "brave-browser" "safari") -}}
 {{- $terminal := promptChoiceOnce . "defaults.terminal" "What is your preferred default terminal" (list "kitty" "iterm2" "wezterm") -}}
 {{- $player := promptChoiceOnce . "defaults.player" "What is your preferred default music app" (list "plex" "apple-music") -}}
-{{- $notes_app := promptChoiceOnce . "defaults.notes_app" "What is your preferred default note-taking app" (list "logseq" "zk") -}}
+{{- $notes := promptChoiceOnce . "defaults.notes" "What is your preferred default note-taking app" (list "logseq" "zk") -}}
 
 {{- if $development -}}
 {{-   $node = true -}}
@@ -47,7 +47,7 @@ data:
     browser: {{ $browser | quote }}
     player: {{ $player | quote }}
     terminal: {{ $terminal | quote }}
-    notes_app: {{ $notes_app | quote }}
+    notes: {{ $notes | quote }}
 
   flags:
     ephemeral: {{ $ephemeral }}
@@ -71,7 +71,6 @@ data:
     development: {{ $development }}
     work: {{ $home }}
     encoding: {{ $encoding }}
-{{ if lookPath "delta" }}
+
 diff:
-  pager: "delta"
-{{ end }}
+  pager: {{ if lookPath "delta" }}"delta"{{ else }}"less -R"{{ end }}
