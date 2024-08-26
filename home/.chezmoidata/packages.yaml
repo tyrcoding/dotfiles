@@ -5,6 +5,7 @@ packages:
     brews:
       - 'bat'
       - 'bottom'
+      - 'chezmoi'
       - 'cmake'
       - 'curl'
       - 'dockutil'
@@ -27,12 +28,13 @@ packages:
     extras:
       - 'starship'
     casks:
-      - 'kitty'
+      - 'iterm2'
       - 'raycast'
       - 'remnote'
       - 'secretive'
-    media-casks:
+    media_casks:
       - 'plex-media-server'
-    gaming-casks:
+      - 'calibre'
+    gaming_casks:
       - 'crossover'
       - 'steam'
