@@ -17,6 +17,10 @@ set -gx EDITOR {{ .defaults.editor }}
 
 set -gx DOTFILES $XDG_DATA_HOME/chezmoi
 
+{{ if eq .chezmoi.os "darwin" -}}
+set -x SSH_AUTH_SOCK {{ .chezmoi.homeDir }}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+{{ end -}}
+
 set -gx HOMEBREW_NO_ANALYTICS 1
 
 fish_add_path --prepend {{ .homebrew.prefix }}/bin/

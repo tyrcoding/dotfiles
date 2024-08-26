@@ -1,7 +1,19 @@
+{{ if lookPath "delta" -}}
+[core]
+  pager = "delta"
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+{{ end -}}
 [user]
   name = {{ .name }}
   email = {{ .email }}
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILPxt+AurtUlNURHJzflTV3C40Q1JvAl16YTXS/3XHGQ
+{{ if eq .chezmoi.os "darwin" -}}
+  signingkey = {{ .chezmoi.homeDir }}/.ssh/ssh_signing.pub
+{{ end -}}
 
 [init]
   defaultBranch = main
@@ -19,7 +31,6 @@
 [gpg]
   format = ssh
 
-{{ if eq .chezmoi.os "darwin" -}}
 [gpg "ssh"]
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-{{ end }}
+  defaultKeyCommand = sh -c 'echo key::$(ssh-add -L)'
+  allowedSignersFile = {{ .chezmoi.homeDir }}/.ssh/allowed_signers
